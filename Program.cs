@@ -44,35 +44,6 @@ builder.Services.AddAuthentication(options =>
 });
 
 
-// CORS with default policy
-builder.Services.AddCors(
-    options =>
-    {
-        options.AddDefaultPolicy(
-            policy =>
-            {
-                policy.AllowAnyOrigin();
-                policy.AllowAnyMethod();
-                policy.AllowAnyHeader();
-            }
-        );
-    }
-);
-
-
-// Cors Allow Specific
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("AllowSpecificOrigin",
-//         builder =>
-//         {
-//             builder.WithOrigins("http://localhost:3000", "http://localhost:4200");
-//             builder.WithHeaders("Authorization", "Content-Type", "Accept", "Origin", "X-Request-With");
-//             builder.WithMethods("GET", "POST", "PUT", "DELETE");
-//         }
-//     );
-// });
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -83,8 +54,8 @@ builder.Services.AddSwaggerGen(opt =>
             "v1",
             new Microsoft.OpenApi.Models.OpenApiInfo
             {
-                Title = "Store API with .NET 8 and PostgreSQL",
-                Description = "Sample Store API with .NET 8 and PostgreSQL",
+                Title = "Punyapat's Store API with .NET 8 and PostgreSQL",
+                Description = "Sample Punyapat's Store API with .NET 8 and PostgreSQL",
             }
         );
 
@@ -121,28 +92,39 @@ builder.Services.AddSwaggerGen(opt =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsProduction()) // Adjust according to your needs
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Cors Allow All
+app.UseCors(options =>
+{
+    options.AllowAnyOrigin();
+    options.AllowAnyHeader();
+    options.AllowAnyMethod();
+});
+
+// Cors Allow Specific Origin
+// app.UseCors(options =>
+// {
+//     options.WithOrigins("http://localhost:3000", "http://localhost:3001", "http://localhost:3002");
+//     options.WithHeaders("Content-Type", "Authorization", "Accept");
+//     options.WithMethods("GET", "POST");
+// });
+
 // Use Static Files
 app.UseStaticFiles();
 
-// Redirect HTTP to HTTPS
-if (!app.Environment.IsDevelopment())
+if(!app.Environment.IsDevelopment())
 {
-    app.UseHttpsRedirection();  // Only use HTTPS redirection in non-development environments
+    app.UseHttpsRedirection();
 }
 
-// Cors with default policy
 app.UseCors();
-
 // Add Authentication
 app.UseAuthentication();
-
-// Add Authorization
 app.UseAuthorization();
 
 app.MapControllers();

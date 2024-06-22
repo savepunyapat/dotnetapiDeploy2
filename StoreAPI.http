@@ -1,6 +1,5 @@
-@StoreAPI_HostAddress = http://localhost:5053/api
-@StoreAPI_AccessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWFtc2FtaXQiLCJqdGkiOiI3ZGYxYmY3Ni1mNTVhLTQ2MTEtOGI3Zi00MTYyZmIxZjYyOGYiLCJleHAiOjE3MTE2Mzc3NTYsImlzcyI6IioiLCJhdWQiOiIqIn0.7qgVoMcGLu24qsffNcKa9Bi70-aPAykzlwBtE5dbF64
-
+@StoreAPI_HostAddress = http://localhost:8081/api
+@StoreAPI_AccessToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiaWFtc2FtaXQiLCJqdGkiOiIyYzViYTE1Yy1jMDE4LTRkYzItYmM3Ni0wZTU1OTZiMDY4ZTEiLCJleHAiOjE3MTkwNjM4NTAsImlzcyI6IioiLCJhdWQiOiIqIn0.PAnG2J50L8e6bSdEiRz8m6wdGzf_YzqDkCmRWqT4Kq8
 // Test connection to the StoreAPI
 GET {{StoreAPI_HostAddress}}/Product/testconnectdb
 Accept: application/json
@@ -72,6 +71,6 @@ Accept: application/json
 ###
 
 // Delete a product
-DELETE {{StoreAPI_HostAddress}}/Product/5
+DELETE {{StoreAPI_HostAddress}}/Product/4
 Authorization: Bearer {{StoreAPI_AccessToken}}
 Accept: application/json
